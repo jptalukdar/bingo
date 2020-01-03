@@ -3,7 +3,7 @@
 Play the classic game of Bingo
 Mode : 
 1. Player vs Player
-2. Player vs AI
+2. Player vs Computer Bot
 
 
 ## Usage
