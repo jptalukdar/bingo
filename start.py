@@ -9,7 +9,7 @@ print("***********************")
 
 
 def play(size=5, ai=False, player1Name=None, player2Name=None,simulate=False):
-
+	winner=None
 	if simulate:
 		ai=True
 		player1=bingoAI.AI(size=size)
@@ -43,16 +43,20 @@ def play(size=5, ai=False, player1Name=None, player2Name=None,simulate=False):
 						print("Match Drawn")
 					else:
 						print("Player {} Won ".format(player1.playerName))
+						player1.display(override=True)
+						winner=player1
 					
 				else:
 					if player2.turn(choice):
 						print("Player {} Won".format(player2.playerName))
+						player2.display(override=True)
 						WINSTATUS = True
+						winner=player2
 				break
 		if WINSTATUS == True:
 			break
 		while(True):
-			player2.display(override=True)
+			player2.display()
 			try:			
 				if player2.isAI():
 					choice=player2.makeMove()
@@ -69,14 +73,21 @@ def play(size=5, ai=False, player1Name=None, player2Name=None,simulate=False):
 						print("Match Drawn")
 					else:
 						print("Player {} Won".format(player2.playerName))
+						player2.display(override=True)
+						winner=player2
 				else:
 					if player1.turn(choice):
 						print("Player {} Won".format(player1.playerName))
 						WINSTATUS = True
+						player1.display(override=True)
+						winner=player1
 				break
 		
 	
 	print("BINGO!")
+	if winner != None:
+		print("Winner is {}".format(winner.playerName))
+		winner.display(override=True)
 	#if player2.isAI():
 		#player2.displayInitialState()
 		#player2.display(override=True)
